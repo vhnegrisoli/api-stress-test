@@ -15,9 +15,19 @@ Basta rodar o comando:
 
 `python api_stress_test.py`
 
-# Configuração do teste
+# Configurar teste
 
-Existem 2 configurações principais:
+A configuração do teste fica no arquivo `config.py`.
+
+Neste arquivo, existirão 3 objetos e uma função para exportá-los.
+
+* concorrencia
+* tempo
+* requisicao
+
+## Configuração do teste
+
+Existem 2 configurações principais do teste de carga:
 
 - Concorrência
 - Duração
@@ -35,9 +45,9 @@ tempo = 120
 
 No exemplo acima, serão realizadas 100 requisições a cada 1 segundo, durante 120 segundos (2 minutos). Ou seja, será um total de 12.000 requisições em 120 segundos.
 
-# Configuração da requisição
+## Configuração da requisição
 
-O objeto global requisicao é um dicionário contendo método, url, dados (body) e headers, que também é um dicionário contendo um par chave/valor.
+O objeto requisicao é um dicionário contendo método, url, dados (body) e headers, que também é um dicionário contendo um par chave/valor.
 
 Exemplo de configuração:
 
