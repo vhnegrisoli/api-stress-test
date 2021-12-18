@@ -4,6 +4,10 @@ import time
 import random
 from config import gerar_config
 
+config = gerar_config()
+requisicao = config['requisicao']
+concorrencia = config['concorrencia']
+tempo = config['tempo']
 totais = []
 threads = []
 
@@ -15,7 +19,6 @@ def criar_thread(name):
 
 
 def call_http_request():
-    requisicao = gerar_config()['requisicao']
     metodo = requisicao['metodo']
     url = requisicao['url']
     response = ''
@@ -30,20 +33,17 @@ def call_http_request():
     response_status = response.status_code
     if (response_status >= 200 and response_status < 300):
         totais.append('Sucesso')
-        print('{} - {} - Resposta: {} - {}ms'.format(url,
-                                                     metodo, response_status, response_time))
+        print('{} - {} - Resposta: {} - {}ms'.format(url, metodo, response_status, response_time))
     else:
         totais.append('Falha')
-        print('{} - {} - Resposta: {} - {}ms - ERROR'.format(url,
-                                                             metodo, response_status, response_time))
+        print('{} - {} - Resposta: {} - {}ms - ERROR'.format(url, metodo, response_status, response_time))
     return response_status
 
 
 if __name__ == "__main__":
-    config = gerar_config()
-    for segundo in range(config['tempo']):
+    for segundo in range(tempo):
         time.sleep(1)
-        for usuario in range(config['concorrencia']):
+        for usuario in range(concorrencia):
             thread = threading.Thread(target=criar_thread, args=(usuario,))
             thread.start()
     while (len(threads) > 0):
