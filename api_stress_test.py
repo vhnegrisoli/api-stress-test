@@ -4,19 +4,19 @@ import time
 import random
 
 concorrencia = 100
-tempo = 20
+tempo = 50
 
 totais = []
 threads = []
 
 requisicao = {
     'metodo': 'POST',
-    'url': 'https://b2vn-auth-api.herokuapp.com/oauth/token',
-    'dados': '"-----------------------------21370522132873121755771853860\r\nContent-Disposition: form-data; name=\"client_id\"\r\n\r\nb2vn-auth-api-client\r\n-----------------------------21370522132873121755771853860\r\nContent-Disposition: form-data; name=\"client_secret\"\r\n\r\nb2vn-auth-api-secret\r\n-----------------------------21370522132873121755771853860\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\nvictorhugonegrisoli.ccs@gmail.com\r\n-----------------------------21370522132873121755771853860\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\n123456\r\n-----------------------------21370522132873121755771853860\r\nContent-Disposition: form-data; name=\"grant_type\"\r\n\r\npassword\r\n-----------------------------21370522132873121755771853860--\r\n"',
+    'url': 'https://teste-api.herokuapp.com/api/auth/token',
+    'dados': '{"usuario":"teste@teste.com","senha":"123456"}',
     'headers': {
         'Authorization': 'Bearer 25e2221f-3bad-4225-9c67-12daf27dbfd1',
-        'api-secret': 'correcao-api-tataia-base64-producao',
-        'content-type': 'multipart/form-data; boundary=---------------------------21370522132873121755771853860'
+        'api-secret': 'correcao-teste-base64',
+        'content-type': 'application/json'
     }
 }
 
