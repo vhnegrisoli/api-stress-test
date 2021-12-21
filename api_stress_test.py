@@ -12,6 +12,7 @@ tempo = config['tempo']
 totais = []
 timer = []
 requests_ids = []
+metricas_tempo = []
 
 
 def iniciar_timer(name):
@@ -37,16 +38,17 @@ def realizar_chamada_http():
     tempo_inicial = time.process_time()
     response = requests.request(
         method=metodo, url=requisicao['url'], headers=requisicao['headers'], data=requisicao['dados'])
-    tempo_total = time.process_time() - tempo_inicial
+    tempo_total = round(time.process_time() - tempo_inicial, 2)
+    metricas_tempo.append(tempo_total)
     response_status = response.status_code
     if response_status >= 200 and response_status < 300:
         totais.append('Sucesso')
         print('{} - {} - Resposta: {} - {}ms'.format(url,
-                                                     metodo, response_status, round(tempo_total, 2)))
+                                                     metodo, response_status, tempo_total))
     else:
         totais.append('Falha')
         print('{} - {} - Resposta: {} - {}ms - ERROR'.format(url,
-                                                             metodo, response_status, round(tempo_total, 2)))
+                                                             metodo, response_status, tempo_total))
     requests_ids.remove(request_id)
 
 
@@ -69,3 +71,5 @@ if __name__ == "__main__":
     print('Disponibilidade: {}%'.format(disponibilidade))
     print('Sucessos: {}'.format(sucessos))
     print('Falhas: {}'.format(falhas))
+    print('Requisição mais rápida: {}s'.format(min(metricas_tempo)))
+    print('Requisição mais lenta: {}s'.format(max(metricas_tempo)))
