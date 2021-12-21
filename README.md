@@ -21,9 +21,9 @@ A configuração do teste fica no arquivo `config.py`.
 
 Neste arquivo, existirão 3 objetos e uma função para exportá-los.
 
-* concorrencia
-* tempo
-* requisicao
+- concorrencia
+- tempo
+- requisicao
 
 ## Configuração do teste
 
@@ -32,7 +32,7 @@ Existem 2 configurações principais do teste de carga:
 - Concorrência
 - Duração
 
-A concorrência será a quantidade de threads que serão criadas a cada segundo, e a duração será a quantidade de segundos.
+A concorrência será a quantidade de threads que serão criadas para simular requisições sendo enviadas, e a duração será a quantidade de segundos em que o total de threads criadas estará disparando requisições.
 
 Cada thread irá simular um usuário realizando uma requisição ao servidor.
 
@@ -43,7 +43,7 @@ concorrencia = 100
 tempo = 120
 ```
 
-No exemplo acima, serão realizadas 100 requisições a cada 1 segundo, durante 120 segundos (2 minutos). Ou seja, será um total de 12.000 requisições em 120 segundos.
+No exemplo acima, serão criadas 100 threads que farão loops de disparos durante 120 segundos (2 minutos). Cada thread irá disparar uma requisição após a outra em loop. Ao fim dos 120 segundos, as requisições não serão mais disparadas, e a aplicação irá aguardar as restantes (caso existam) para realizar o cálculo das métricas.
 
 ## Configuração da requisição
 
