@@ -38,7 +38,7 @@ Exemplo:
 
 Abaixo, está exemplificado em um worflow qual será o funcionamento do software.
 
-![Workflow](API Stress Test Flow.png)
+![Workflow](https://github.com/vhnegrisoli/api-stress-test/blob/master/API%20Stress%20Test%20Flow.png)
 
 # Configurar teste
 
