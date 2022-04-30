@@ -11,9 +11,34 @@ Aplicação em Python para realizar testes de carga e estresse em sites e APIs u
 
 # Executando
 
+É possível executar de 2 maneiras diferentes:
+
+* Rodando com valores padrões de concorrência e tempo
+* Rodando com valores de concorrência e tempo especificados por parâmetro
+
+### Executando com valores padrões
+
 Basta rodar o comando:
 
 `python api_stress_test.py`
+
+A concorrência e o tempo serão os que estão setados no arquivo `config.py`, caso queira um valor default diferente, terá que alterar o arquivo.
+
+### Executando com valores informados por parâmetro
+
+Basta rodar o comando:
+
+`python api_stress_test.py valor_concorrencia valor_tempo`
+
+Exemplo:
+
+`python api_stress_test.py 10 60` -> executará o teste de estresse com 10 usuários concorrentes por 60 segundos.
+
+# Worflow do funcionamento do teste
+
+Abaixo, está exemplificado em um worflow qual será o funcionamento do software.
+
+![Workflow](API Stress Test Flow.png)
 
 # Configurar teste
 

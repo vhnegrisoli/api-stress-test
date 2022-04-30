@@ -1,9 +1,9 @@
 import requests
 import threading
 import time
-import random
 from config import gerar_config
 import uuid
+import sys
 
 config = gerar_config()
 requisicao = config['requisicao']
