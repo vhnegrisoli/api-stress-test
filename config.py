@@ -7,7 +7,7 @@ tempo_default = 3
 
 requisicao = {
     'metodo': 'GET',
-    'url': 'http://localhost:8080/api/v1/cep/86050523/',
+    'url': 'http://localhost:8080/api/v1/cep/86010580/',
     'dados': '{}',
     'headers': {
         'content-type': 'application/json'
