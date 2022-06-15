@@ -48,11 +48,11 @@ def exibir_resposta_requisicao(response, tempo_total):
     response_status = response.status_code
     if response_status >= 200 and response_status < 300:
         totais.append('Sucesso')
-        print('{} - {} - Resposta: {} - {}ms'.format(url,
+        print('{} - {} - Resposta: {} - {}s'.format(url,
               metodo, response_status, tempo_total))
     else:
         totais.append('Falha')
-        print('{} - {} - Resposta: {} - {}ms - ERROR'.format(url,
+        print('{} - {} - Resposta: {} - {}s - ERROR'.format(url,
               metodo, response_status, tempo_total))
 
 
