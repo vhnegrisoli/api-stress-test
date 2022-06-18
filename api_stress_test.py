@@ -29,31 +29,43 @@ def iniciar_timer():
 
 def criar_thread_usuario():
     while(len(timer) > 0):
-        realizar_chamada_http()
+        try:
+            realizar_chamada_http()
+        except:
+            print('Erro ao tentar relizar chamada HTTP')
+            totais.append('Falha')
 
 
 def realizar_chamada_http():
     request_id = str(uuid.uuid4())
     requests_ids.append(request_id)
     tempo_inicial = time.process_time()
-    response = requests.request(
-        method=metodo, url=url, headers=headers, data=dados)
+    status_code = 0
+    try:
+        response = requests.request(
+            method=metodo, url=url, headers=headers, data=dados)
+        status_code = response.status_code
+    except:
+        status_code = 500
     tempo_total = round(time.process_time() - tempo_inicial, 2)
     metricas_tempo.append(tempo_total)
-    exibir_resposta_requisicao(response, tempo_total)
+    exibir_resposta_requisicao(status_code, tempo_total)
     requests_ids.remove(request_id)
 
 
-def exibir_resposta_requisicao(response, tempo_total):
-    response_status = response.status_code
-    if response_status >= 200 and response_status < 300:
+def exibir_resposta_requisicao(status_code, tempo_total):
+    if isSuccess(status_code):
         totais.append('Sucesso')
         print('{} - {} - Resposta: {} - {}s'.format(url,
-              metodo, response_status, tempo_total))
+              metodo, status_code, tempo_total))
     else:
         totais.append('Falha')
         print('{} - {} - Resposta: {} - {}s - ERROR'.format(url,
-              metodo, response_status, tempo_total))
+              metodo, status_code, tempo_total))
+
+
+def isSuccess(status_code):
+    return status_code >= 200 and status_code < 300
 
 
 def calcular_metricas():
